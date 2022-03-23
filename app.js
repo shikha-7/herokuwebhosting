@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
 const path = require("path");
-const port = process.env.PORT // 3000;
+
 const route = require('./server/routes/routes');
-require('./server/database/db');
+const connectDB = require('./server/database/db');
+
+dotenv.config({path:'config.env'});
+const port = process.env. PORT // 3000;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const cookieParser = require("cookie-parser");
@@ -11,7 +15,7 @@ const sessions = require('express-session');
 
 const oneDay = 1000 * 60 * 60 * 24;
 
-
+connectDB();
 app.use(sessions({
     secret: "mynameisshikhakumariiamfrombihar",
     saveUninitialized: true,
