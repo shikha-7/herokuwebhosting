@@ -16,6 +16,8 @@ const sessions = require('express-session');
 const oneDay = 1000 * 60 * 60 * 24;
 
 connectDB();
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 app.use(sessions({
     secret: "mynameisshikhakumariiamfrombihar",
     saveUninitialized: true,
